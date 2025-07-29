@@ -63,6 +63,17 @@ class Lexer:
                 else :
                     tokens.append(Token("OPERATOR", char))
                     self.position +=1
+            
+            elif char == '"':
+                temp = self.position + 1 
+                while temp < len(self.source) and self.source[temp] != '"':
+                    temp +=1
+                if temp >= len(self.source):
+                    print ( "Error! unterminated string!")
+                    pass
+                else:
+                    tokens.append(Token("STRING", self.source[self.position+1:temp] ))
+                    self.position = temp + 1
             else:
                 # Skip whitespace or unknown characters
                 self.position += 1
@@ -71,7 +82,7 @@ class Lexer:
     
 
 # token1 = Token("NUMBER", "32")
-lexer = Lexer("x == y != z <= w")
+lexer = Lexer('message = "Hello world"')
 tokens = lexer.tokenize_II()
 for token in tokens:
     print(token)
