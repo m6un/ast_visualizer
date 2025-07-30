@@ -28,7 +28,7 @@ class Lexer:
             if isinstance(char, int):
                 tokens.append(Token("NUMBER", char))
                 
-    def tokenize_II(self):
+    def tokenize(self):
         """
         In the above one , One mistake we did was the source code itself is a string. THere is no point in then checking instance on it. Better to use isalpha or isdigit functions , built in ones in python hmmm. 
         Also, we need to use position apparantly, to manually control the iteration, instead of using for char in self.source. This is because we need to consume consecutive characters of the same type. Hmm I get why, let's implement. 
@@ -80,9 +80,3 @@ class Lexer:
                 
         return tokens
     
-
-# token1 = Token("NUMBER", "32")
-lexer = Lexer('message = "Hello world"')
-tokens = lexer.tokenize_II()
-for token in tokens:
-    print(token)
